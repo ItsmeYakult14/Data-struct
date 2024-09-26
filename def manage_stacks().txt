@@ -1,0 +1,37 @@
+def manage_stacks():
+    stacks = []
+
+    while True:
+        try:
+            num_stacks = int(input("Enter how many stack(s) you want to enter: "))
+            if num_stacks > 0:
+                break
+        except ValueError:
+            pass
+
+    for i in range(num_stacks):
+        stack_name = input(f"Enter stack #{i + 1}: ")
+        stacks.append(stack_name)
+
+    if len(stacks) == 1:
+        print(f"You have a stack of {stacks[0]}.")
+    else:
+        print(f"You have stacks of {', '.join(stacks[:-1])}, and {stacks[-1]}.")
+
+    while stacks:
+        remove_item = input("Click 'R' to remove an item: ")
+
+        if remove_item == "R":
+            stacks.pop()
+
+            if len(stacks) > 1:
+                print(f"You have stacks of {', '.join(stacks[:-1])}, and {stacks[-1]}.")
+            elif len(stacks) == 1:
+                print(f"You have a stack of {stacks[0]}.")
+            else:
+                print(f"You do not have any item left in your {'stacks' if num_stacks == 1 else 'stacks'}.")
+        else:
+            print("Please press 'R' to remove an item.")
+
+
+manage_stacks()
