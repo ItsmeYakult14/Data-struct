@@ -1,0 +1,39 @@
+from collections import deque
+
+def managing_queue():
+    queue = deque()
+    while True:
+        try:
+            num_queue = int(input("Enter how many persons you want to enter: "))
+            if num_queue <= 0:
+                continue
+            break
+        except ValueError:
+            continue
+
+    for i in range(num_queue):
+        name = input(f"Enter queue #{i + 1}: ")
+        queue.append(name)
+
+    display_queue(queue)
+
+    while queue:
+        choice = input("Enter A to cater a person and R to reverse the Queue: ")
+
+        if choice == 'R':
+            queue.reverse()
+            display_queue(queue)
+
+        if choice == 'A':
+            queue.popleft()
+            display_queue(queue)
+
+def display_queue(queue):
+    if len(queue) == 0:
+        print("You do not have any person on your queue.")
+    elif len(queue) == 1:
+        print(f"Queue: {queue[0]}.")
+    else:
+        print(f"Queue: {', '.join(list(queue)[:-1])}, {queue[-1]}.")
+
+managing_queue()
